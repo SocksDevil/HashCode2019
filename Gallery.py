@@ -11,4 +11,4 @@ class Photo:
         self.tags = tags
 
     def __repr__(self):
-        print((self.orientation, self.num_tags, self.tags.split()))
+        return "({0}, {1}, {2})".format(self.orientation, self.num_tags, self.tags.split())
