@@ -1,9 +1,12 @@
-from Gallery import Gallery
+from Gallery import Gallery, Photo
 from  Submission import Submission, Slide
-import sort
 
 
-def greedy(gl: Gallery):
-    sorted(gl.gallery, key=sort)
-    for i in range()
+def greedy(gl: Gallery, filename: str):
+    submissions = []
+    for i in gl.gallery:
+        submissions.append(Slide([i]))
+
+    s = Submission(submissions)
+    s.submit(filename)
 

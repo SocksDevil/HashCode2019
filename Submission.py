@@ -16,4 +16,3 @@ class Submission:
 class Slide:
     def __init__(self, IDs):
         self.IDs = IDs
-        self.length = len(IDs)
