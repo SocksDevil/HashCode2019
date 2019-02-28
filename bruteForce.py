@@ -44,7 +44,7 @@ def randomizer(glV: Gallery, glH: Gallery):
     solutions = []
     points = -1
     best = None
-    for _ in range(0, 10e3):
+    for _ in range(0, 10000):
         solution = bruteforce(glH) + bruteforceV(glV)
         new_points = 0
         for i in range(0, len(solution) - 1):
