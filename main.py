@@ -15,6 +15,17 @@ with open(sys.argv[1]) as input_file:
     id = 0
     for line in input_file:
         [orientation, num_tags, tags] = line.rstrip().split(" ", 2)
+        if orientation == 'H':
+            horizontal_photos.gallery.append(Gallery.Photo(id, orientation, num_tags, tags))
+        elif orientation == 'V':
+            vertical_photos.gallery.append(Gallery.Photo(id, orientation, num_tags, tags))
+
+        id += 1
+
+    print(horizontal_photos.gallery)
+    print(vertical_photos.gallery)
+
+
 def binary_search(arr, item):
     left = 0
     right = len(arr) - 1
@@ -26,31 +37,18 @@ def binary_search(arr, item):
             return True
 
         if arr[middle] > item:
-            right = middle-1
+            right = middle - 1
         else:
-            left = middle+1
+            left = middle + 1
     return False
 
 
-        if orientation == 'H':
-            horizontal_photos.gallery.append(Gallery.Photo(id, orientation, num_tags, tags))
-        elif orientation == 'V':
-            vertical_photos.gallery.append(Gallery.Photo(id, orientation, num_tags, tags))
 def intersection(arr1, arr2):
     return list(set(arr1) & set(arr2))
-
-        id += 1
-
-    print(horizontal_photos.gallery)
-    print(vertical_photos.gallery)
-
 
 def exclusive(arr1, arr2):
     return list(set(arr1) - set(arr2))
 
 
 def calc_points(tags1, tags2):
-    return min(len(intersection(tags1, tags2)), len(exclusive(tags1,tags2)), len(exclusive(tags2, tags1)))
-
-
-
+    return min(len(intersection(tags1, tags2)), len(exclusive(tags1, tags2)), len(exclusive(tags2, tags1)))
