@@ -50,6 +50,11 @@ def binary_search(arr, item):
 def intersection(arr1, arr2):
     return list(set(arr1) & set(arr2))
 
+
+def union(arr1, arr2):
+    return list(set(arr1) | set(arr2))
+
+
 def exclusive(arr1, arr2):
     return list(set(arr1) - set(arr2))
 
@@ -58,7 +63,46 @@ def calc_points(tags1, tags2):
     return min(len(intersection(tags1, tags2)), len(exclusive(tags1, tags2)), len(exclusive(tags2, tags1)))
 
 
-horizontal_photos = greedy(horizontal_photos)
-vertical_photos = greedy(vertical_photos)
+# horizontal_photos = greedy(horizontal_photos)
+# vertical_photos = greedy(vertical_photos)
+#
+# sub = Submission(horizontal_photos + vertical_photos)
 
-sub = Submission(horizontal_photos + vertical_photos)
+# BRUTEFORCE MANHOSO
+slide_show = []
+hori_total = len(horizontal_photos.gallery)
+vert_total = len(vertical_photos.gallery)
+used_vert = 0
+inverted_vert = vertical_photos.gallery[::-1]
+for i in range(hori_total):
+    photo1 = horizontal_photos.gallery[i]
+    tags1 = horizontal_photos.gallery[i].tags
+    slide_show.append(Slide([photo1.id]))
+
+    if used_vert == vert_total:
+        continue
+
+    for j in range(vert_total):
+        photo2 = vertical_photos.gallery[j]
+        if photo2.used:
+            continue
+        tags2 = vertical_photos.gallery[j].tags
+        photo2.used = True
+
+        for k in range(vert_total):
+            photo3 = inverted_vert[k]
+            if photo3.used:
+                continue
+            tags3 = inverted_vert[k].tags
+
+            vert_union = union(tags2, tags3)
+            if calc_points(tags1, vert_union) > 0:
+                slide_show.append(Slide([photo2.id, photo3.id]))
+                photo3.used = True
+                used_vert += 2
+                break
+        break
+
+
+sub = Submission(slide_show)
+sub.submit("output.txt")
