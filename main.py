@@ -47,18 +47,7 @@ def binary_search(arr, item):
     return False
 
 
-def intersection(arr1, arr2):
-    return list(set(arr1) & set(arr2))
-
-def exclusive(arr1, arr2):
-    return list(set(arr1) - set(arr2))
 
 
-def calc_points(tags1, tags2):
-    return min(len(intersection(tags1, tags2)), len(exclusive(tags1, tags2)), len(exclusive(tags2, tags1)))
-
-
-horizontal_photos = greedy(horizontal_photos)
-vertical_photos = greedy(vertical_photos)
-
-sub = Submission(horizontal_photos + vertical_photos)
+greedy(horizontal_photos, "submission.txt")
+# greedy(vertical_photos)
