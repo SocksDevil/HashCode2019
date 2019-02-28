@@ -4,11 +4,12 @@
 # print(var)
 
 import sys
-import Gallery
+from Gallery import *
+from Greedy import *
 from sort import key
 
-vertical_photos = Gallery.Gallery()
-horizontal_photos = Gallery.Gallery()
+vertical_photos = Gallery()
+horizontal_photos = Gallery()
 
 with open(sys.argv[1]) as input_file:
     num_photos = input_file.readline()
@@ -17,17 +18,17 @@ with open(sys.argv[1]) as input_file:
     for line in input_file:
         [orientation, num_tags, tags] = line.rstrip().split(" ", 2)
         if orientation == 'H':
-            horizontal_photos.gallery.append(Gallery.Photo(id, orientation, num_tags, tags))
+            horizontal_photos.gallery.append(Photo(id, orientation, num_tags, tags))
         elif orientation == 'V':
-            vertical_photos.gallery.append(Gallery.Photo(id, orientation, num_tags, tags))
+            vertical_photos.gallery.append(Photo(id, orientation, num_tags, tags))
 
         id += 1
 
-    print(horizontal_photos.gallery)
-    print(vertical_photos.gallery)
+    # print(horizontal_photos.gallery)
+    # print(vertical_photos.gallery)
 
-    sorted(horizontal_photos.gallery,)
-    sorted(vertical_photos.gallery,)
+    horizontal_photos.gallery = sorted(horizontal_photos.gallery,key=key)
+    vertical_photos.gallery = sorted(vertical_photos.gallery, key=key)
 
 def binary_search(arr, item):
     left = 0
@@ -55,3 +56,9 @@ def exclusive(arr1, arr2):
 
 def calc_points(tags1, tags2):
     return min(len(intersection(tags1, tags2)), len(exclusive(tags1, tags2)), len(exclusive(tags2, tags1)))
+
+
+horizontal_photos = greedy(horizontal_photos)
+vertical_photos = greedy(vertical_photos)
+
+sub = Submission(horizontal_photos + vertical_photos)
