@@ -5,6 +5,7 @@
 
 import sys
 import Gallery
+from sort import key
 
 vertical_photos = Gallery.Gallery()
 horizontal_photos = Gallery.Gallery()
@@ -25,6 +26,8 @@ with open(sys.argv[1]) as input_file:
     print(horizontal_photos.gallery)
     print(vertical_photos.gallery)
 
+    sorted(horizontal_photos.gallery,)
+    sorted(vertical_photos.gallery,)
 
 def binary_search(arr, item):
     left = 0
