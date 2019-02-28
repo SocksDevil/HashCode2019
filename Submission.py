@@ -7,8 +7,9 @@ class Submission:
             output_file.write(str(len(self.slide_show)) + "\n")
 
             for i in self.slide_show:
-                for j in i.IDs:
+                for j in i.id:
                     output_file.write(str(j))
+                    output_file.write(" ")
                 output_file.write("\n")
 
         # f = open(filename, "w")
@@ -22,6 +23,7 @@ class Submission:
 
 
 class Slide:
-    def __init__(self, IDs):
-        self.IDs = IDs
+    def __init__(self, IDs, tags):
+        self.id = IDs
         self.length = len(IDs)
+        self.tags = tags

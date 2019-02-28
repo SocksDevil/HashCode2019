@@ -6,6 +6,8 @@
 import sys
 from Gallery import *
 from Greedy import *
+from bruteForce import *
+from GreedyV import *
 from sort import key
 
 vertical_photos = Gallery()
@@ -49,5 +51,16 @@ def binary_search(arr, item):
 
 
 
-greedy(horizontal_photos, "submission.txt")
-# greedy(vertical_photos)
+# horizontal_photos = greedy(horizontal_photos, "submission.txt")
+# vertical_photos = greedyV(vertical_photos, "meias.txt")
+
+
+
+# horizontal_photos = bruteforce(horizontal_photos)
+
+# vertical_photos = bruteforceV(vertical_photos)
+
+solution = randomizer(vertical_photos, horizontal_photos)
+
+sub = Submission(solution)
+sub.submit("c.txt")

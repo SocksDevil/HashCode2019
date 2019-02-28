@@ -19,6 +19,5 @@ def greedy(gl: Gallery, filename: str):
         gallery.pop(current_index)
 
 
-    s = Submission(submissions)
-    s.submit(filename)
+    return submissions
 
