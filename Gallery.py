@@ -4,7 +4,8 @@ class Gallery:
 
 
 class Photo:
-    def __init__(self, orientation, num_tags, tags):
+    def __init__(self, id, orientation, num_tags, tags):
+        self.id = id
         self.orientation = orientation
         self.num_tags = num_tags
         self.tags = tags
