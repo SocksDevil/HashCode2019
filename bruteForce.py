@@ -39,13 +39,22 @@ def bruteforceV(gl: Gallery):
         gallery.pop(random_index - 1)
     return submissions
 
+def randomizeVector(vec, iterations):
+    for i in range(iterations):
+        r1 = random.randint(1, len(vec) - 1)
+        r2 = random.randint(1, len(vec) - 1)
+        temp = vec[r1]
+        vec[r1] = vec[r2]
+        vec[r2] = temp
+
 
 def randomizer(glV: Gallery, glH: Gallery):
-    solutions = []
     points = -1
     best = None
     for _ in range(0, 10000):
         solution = bruteforce(glH) + bruteforceV(glV)
+        if len(solution) > 2:
+            randomizeVector(solution, 50000)
         new_points = 0
         for i in range(0, len(solution) - 1):
             new_points+= calc_points(solution[i].tags, solution[i + 1].tags)
